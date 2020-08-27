@@ -10,20 +10,20 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     console.log(matriz);
 
-    console.log(buscarMax());
+    console.log(retornarMaxYMinSegunFila());
 
     function cargarMatriz(width,height) {
 
-        for (let x = 0; x < width; x++) {
+        for (let y = 0; y < width; y++) {
 
-            matriz[x] = [];
+            matriz[y] = [];
 
-            for (let y = 0; y < height; y++) {
+            for (let x = 0; x < height; x++) {
                 
                 let new_elem = Math.random();
                 new_elem = new_elem * (max_limit-min_limit) + min_limit;
 
-                matriz[x][y] = Math.floor(new_elem);
+                matriz[y][x] = Math.floor(new_elem);
                     
             }
             
@@ -34,13 +34,37 @@ document.addEventListener("DOMContentLoaded",()=>{
 
         let max_elem = 0;
 
-        for(let x = 0; x < matriz.length ; x++){
+        for(let y = 0; y < matriz.length ; y++){
 
-            for(let y = 0; y < matriz[x].length; y++){
-                if(max_elem<matriz[x][y]) max_elem = matriz[x][y];
+            for(let x = 0; x < matriz[y].length; x++){
+                if(max_elem<matriz[y][x]) max_elem = matriz[y][x];
             }
         }
         return max_elem;
+
+    }
+
+    function retornarMaxYMinSegunFila(){ //Ej 01.b
+
+        let respuestas = [matriz.length];
+        let es_par
+
+        for(let y = 0; y < matriz.length; y++){
+
+            es_par = (y % 2) == 0;
+            for (let x = 0; x < matriz.length; x++){
+
+                if(es_par){
+                    if(!respuestas[y]||respuestas[y] < matriz[y][x])    respuestas[y] = matriz[y][x];
+                }else{
+                    if(!respuestas[y]||respuestas[y] > matriz[y][x])    respuestas[y] = matriz[y][x];
+                }
+
+            }
+
+        }
+
+        return respuestas;
 
     }
 
