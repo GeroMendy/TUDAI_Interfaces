@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     console.log(matriz);
 
-    console.log(retornarMaxYMinSegunFila());
+    console.log(calcularPromedioPorFila());
 
     function cargarMatriz(width,height) {
 
@@ -68,4 +68,24 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     }
 
+    function calcularPromedioPorFila(){  //Ej 01.c
+
+        let promedios = []
+        let sumatoria;
+
+        for(let y = 0; y < matriz.length; y++){
+
+            sumatoria=0;
+
+            for (let x = 0; x < matriz.length; x++){
+
+                sumatoria+=matriz[y][x];
+
+            }
+
+            if(matriz[y].length>0)    promedios[y]=(sumatoria/matriz[y].length);
+
+        }
+        return promedios;
+    }
 });
