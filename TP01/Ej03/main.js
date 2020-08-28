@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     let img = ctx.getImageData(0,0,canvas.clientWidth,canvas.clientHeight);
 
     
-    function cambiarAColor(rgba=[0,200,0,255]){
+    function cambiarAColor(rgba=[0,0,0,255]){
 
         let byteArray = Uint8ClampedArray.from(rgba);
 
@@ -29,6 +29,8 @@ document.addEventListener("DOMContentLoaded",()=>{
         let color = [];
         for(let i=0; i < input_canvas_color.length; i++){
             color[i] = input_canvas_color[i].value;
+            if(color[i]>255)color[i]=255;
+            else if(color[i]<0)color[i]=0;
         }
         console.log(color);
         cambiarAColor(color);

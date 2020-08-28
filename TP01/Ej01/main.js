@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded",()=>{
     let max_limit = 10000;
     let matriz = [];
 
-    cargarMatriz(1000,1000);
+    cargarMatriz(5,5);
 
     console.log(matriz);
 
