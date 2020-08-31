@@ -10,13 +10,13 @@ document.addEventListener("DOMContentLoaded", () => {
         [255, 135, 35, 255],
         [253, 35, 51, 255],
         [30, 216, 216, 255],
-        [61, 238, 33, 255],
+        [61, 238, 33, 255]
     ];
 
     function crearGradiente(colores = [[]]) {
         let width = canvas.clientWidth;
         let x_size = width / (colores.length - 1);
-        for (let y = 0; y < canvas.clientHeight; y++) {
+        for (let y = 0; y <= canvas.clientHeight; y++) {
 
             for (let n_color = 1; n_color < colores.length; n_color++) {
 
