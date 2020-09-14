@@ -36,13 +36,16 @@
             <button class="js-filtro">
                 Saturaci&oacuten
             </button>
+            <button class="js-filtro">
+                Blur
+            </button>
 
         </div>
     </div>
 
     <canvas id="js-canvas" width="800" height="600"></canvas>
 
-    <div id="js-menu_filtro_binarizacion" class="hidden">
+    <div class="js-hidden_filter_menu" id="js-menu_filtro_binarizacion" class="hidden">
         <label for="colorA">Elija el color para los 'oscuros'</label>
         <input class="js-color_filtro_binarizacion" name="colorA" type="color" value="#000000">
         <br>
@@ -55,12 +58,18 @@
         <p>*en caso de dejar vacío, se utiliza el valor promedio como limite</p>
         <button id="js-boton_confirmar_binarizacion">Aplicar Filtro</button>
     </div>
-    <div id="js-menu_filtro_saturacion" class="hidden">
+    <div class="js-hidden_filter_menu" id="js-menu_filtro_saturacion" class="hidden">
         <label for="saturacion">Elija el porcentaje de saturaci&oacuten a aplicar*</label>
         <input id="js-valor_saturacion_filtro_saturacion" name="colorA" type="number" min="-80" max="400" value="20">
         <p>*para reducir la saturcaion, introduzca un valor negativo</p>
         <br>
         <button id="js-boton_confirmar_saturacion">Aplicar Filtro</button>
+    </div>
+    <div class="js-hidden_filter_menu" id="js-menu_filtro_blur" class="hidden">
+        <label for="blur">Elija el rango de pixeles a difuminar*</label>
+        <input id="js-rango_pixeles_filtro_blur" name="rango_blur" type="number" min="0" max="10" value="3">
+        <br>
+        <button id="js-boton_confirmar_blur">Aplicar Filtro</button>
     </div>
 
     <button class="button_next_to_canvas" id="js-new_canvas">Nuevo canvas</button>

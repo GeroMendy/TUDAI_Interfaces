@@ -139,10 +139,10 @@ document.addEventListener("DOMContentLoaded", () => {
         //Salta al siguiente posible byte cuando llega a uno de los bordes del canvas.
         for (let bloque_y = y - rango; bloque_y <= y + rango; bloque_y++) {
 
-            if ((bloque_y < height) || (bloque_y >= 0)) {
+            if ((bloque_y < height) && (bloque_y >= 0)) {
                 for (let bloque_x = x - rango; bloque_x <= x + rango; bloque_x++) {
 
-                    if ((bloque_x < width) || (bloque_x >= 0)) {
+                    if ((bloque_x < width) && (bloque_x >= 0)) {
                         bytes[cant_bytes] = ((bloque_x + (bloque_y * width)) * 4);
                         cant_bytes++;
                     }
@@ -187,6 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ctx.fillStyle = DEFAULT_COLOR;
         ctx.fillRect(0, 0, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         image_backup_copy = null;
+        aplicarFiltro();
     }
 
     //Filtros:
@@ -302,6 +303,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
         }
     }
+
+    function aplicarFiltroBlur(imageData, width, height, rango_blur = 4) {
+
+        for (let y = 0; y < height; y++) {
+            for (let x = 0; x < width; x++) {
+
+                let rgba_values = [0, 0, 0, 0];
+                let bytes = getBloqueDeBytesCercanos(x, y, width, height, rango_blur);
+
+                bytes.forEach(byte => {
+                    rgba_values[0] += imageData[byte];
+                    rgba_values[1] += imageData[byte + 1];
+                    rgba_values[2] += imageData[byte + 2];
+                });
+
+                rgba_values[0] /= bytes.length;
+                rgba_values[1] /= bytes.length;
+                rgba_values[2] /= bytes.length;
+                rgba_values[3] = imageData[((x + (y * width)) * 4) + 3]
+
+                setPixel(imageData, width, x, y, rgba_values);
+            }
+
+        }
+
+    }
     // function aplicarFiltroBinarizacionConMatiz(imageData, width, height) {
 
 
@@ -363,10 +390,10 @@ document.addEventListener("DOMContentLoaded", () => {
         data = data.replace(/^data:image\/[^;]*/, 'data:application/octet-stream');
 
         download_button.href = data;
-        download_button.click();
+        //download_button.click();
     }
 
-    function aplicarFiltro(filtro) {
+    function aplicarFiltro(filtro = 6) {
         hideFilterMenus();
 
         if (!is_image_uploaded) return;
@@ -393,6 +420,9 @@ document.addEventListener("DOMContentLoaded", () => {
             case 4:
                 document.querySelector("#js-menu_filtro_saturacion").classList.remove("hidden");
                 break;
+            case 5:
+                document.querySelector("#js-menu_filtro_blur").classList.remove("hidden");
+                break;
         }
         ctx.putImageData(imageData, 0, 0);
     }
@@ -414,8 +444,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function hideFilterMenus() {
-        document.querySelector("#js-menu_filtro_binarizacion").classList.add("hidden");
-        document.querySelector("#js-menu_filtro_saturacion").classList.add("hidden");
+        let menus = document.querySelectorAll(".js-hidden_filter_menu");
+        menus.forEach(m => {
+            m.classList.add("hidden");
+        });
     }
     function setToolsOff() {
         setPencilOff();
@@ -463,6 +495,16 @@ document.addEventListener("DOMContentLoaded", () => {
         aplicarFiltroSaturacion(imageData.data, canvas.width, canvas.height, saturacion);
         ctx.putImageData(imageData, 0, 0);
     });
+
+    document.querySelector("#js-boton_confirmar_blur").addEventListener("click", () => {
+
+        let imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+        let rango_blur = document.querySelector("#js-rango_pixeles_filtro_blur").value;
+        rango_blur *= 1.0;
+        aplicarFiltroBlur(imageData.data, canvas.width, canvas.height, rango_blur);
+        ctx.putImageData(imageData, 0, 0);
+    });
+    
     document.querySelector("#js-download_button").addEventListener("click", downloadCanvasAsImage);
 
 });
