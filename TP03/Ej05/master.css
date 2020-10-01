@@ -1,0 +1,12 @@
+#div_mario{
+    width: 160px;
+    height: 160px;
+    background-image: url("../img/mario_spritesheet.png");
+    animation: marioCorriendo .3s steps(4) infinite;
+
+}
+
+@keyframes marioCorriendo{
+    from{background-position-x: 0px;}
+    to{background-position-x: 640px;}
+}
