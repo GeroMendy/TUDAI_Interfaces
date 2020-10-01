@@ -1,0 +1,56 @@
+#segundero{
+    position: absolute;
+    top: 10px;
+    left: 149px;
+    width: 3px;
+    height: 120px;
+    background-color: red;
+    transform-origin: 50% 105px 0;
+
+    animation-name: rotacion_aguja;
+    animation-timing-function: linear;
+    animation-duration: 60s;
+    animation-iteration-count: infinite;
+}
+#minutero{
+    position: absolute;
+    top: 25px;
+    left: 148px;
+    width: 5px;
+    height: 100px;
+    background-color: black;
+    transform-origin: 50% 90px 0;
+
+    animation-name: rotacion_aguja;
+    animation-timing-function: linear;
+    animation-duration: 3600s;
+    animation-iteration-count: infinite;
+}
+#horario{
+    position: absolute;
+    top: 45px;
+    left: 146px;
+    width: 8px;
+    height: 80px;
+    background-color: black;
+    transform-origin: 50% 70px 0;
+
+    animation-name: rotacion_aguja;
+    animation-timing-function: linear;
+    animation-duration: 43200s;
+    animation-iteration-count: infinite;
+}
+#boton{
+    position: absolute;
+    top: 110px;
+    left: 145px;
+    width: 10px;
+    height: 10px;
+    background-color: rgb(100, 100, 130);
+    border-radius: 5px;
+}
+@keyframes rotacion_aguja{
+    0% {transform: rotate(0turn);}
+    50% {transform: rotate(0.5turn);}
+    100% {transform: rotate(1turn);}
+}
