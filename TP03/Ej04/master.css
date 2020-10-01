@@ -1,0 +1,48 @@
+div{
+    width: 50px;
+    height: 50px;
+    float: left;
+}
+#div_hover{
+
+    background-color: blue;
+    transition: background-color .5s ease-out;
+}
+#div_hover:hover{
+
+    background-color: indigo;
+    transition: background-color .5s ease-in;
+}
+#div_focus input{
+    transform-origin: 0 0 0;
+    background-color: red;
+    transition: transform .5s ease-in;
+}
+#div_focus input:focus{
+    transform: scaleY(2);
+    transition: transform .5s ease-out;
+}
+
+#div_active{
+
+    transform: rotate(0);
+    background-color: green;
+    transition: transform .7s ease-out;
+}
+#div_active:active{
+    transform: rotate(45deg);
+    transition: transform .7s ease-in;
+}
+/* 
+@keyframes easeOutElastic{
+    0%{transform: scaleY(1);}
+    10%{transform: scaleY(3.7);}
+    11%{transform: scaleY(4);}
+    12%{transform: scaleY(3.8);}
+    16%{transform: scaleY(2.8);}
+    18%{transform: scaleY(2.7);}
+    20%{transform: scaleY(2.8);}
+    45%{transform: scaleY(3.2);}
+    55%{transform: scaleY(2.9);}
+    100%{transform: scaleY(3);}
+} */
