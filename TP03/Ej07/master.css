@@ -1,0 +1,43 @@
+body{
+    font-family: sans-serif;
+    color: skyblue;
+}
+
+#acordeon{
+    border-radius: 4px;
+    width: 500px;
+    height: auto;
+    background-color: rgb(20,40,50);
+    list-style: none;
+    padding: 2%;
+}
+#acordeon li{
+    overflow: hidden;
+    height: auto;
+    max-height: 100px;
+    padding: 2%;
+    margin: 3% 0;
+    border-radius: 4px;
+    background-color: rgb(10,20,25);
+    transition: background-color .3s ease-in,max-height 1.5s ease-in;
+}
+
+#acordeon li:hover{
+    height: auto;
+    max-height: 100px;
+    background-color: rgb(30,55,70);
+    transition: background-color .3s ease-in,max-height .6s ease-out;
+}
+#acordeon li:active{
+    overflow: show;
+    height: auto;
+    max-height: 600px;
+    transition: background-color .3s ease-in,max-height .4s ease-out;
+}
+.acordeon_hidden_content{
+    margin-top: 20px;
+}
+.acordeon_hidden_content img{
+    border-radius: 4px;
+    width: 100%;
+}
