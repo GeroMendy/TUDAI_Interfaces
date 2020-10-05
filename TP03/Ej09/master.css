@@ -1,0 +1,77 @@
+body{
+    background-color: teal;
+}
+
+#button_progress_1{
+    position: relative;
+    margin: 5%;
+    width: 20%;
+    height: 45px;
+    color: black;
+    font-size: larger;
+    background-color:white;
+    border-radius: 2px;
+    border: 2px solid rgb(255, 255, 190);
+    overflow: hidden;
+
+}
+button{
+text-align: center;
+vertical-align: text-top;
+}
+button p{
+    margin: 0;
+    padding: 0;
+    z-index: 2;
+    /* display: inline-block; */
+}
+
+
+#button_progress_1:active{
+    border: inherit;
+}
+#bar_progress_1{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: rgba(0,180,0, 0.4);
+    z-index: 1;
+}
+.loading{
+
+    animation: barra_progreso 5s linear infinite,background_moving_barra .3s linear infinite;
+}
+
+#button_progress_2{
+    position: relative;
+    margin: 5%;
+    width: 20%;
+    height: 45px;
+    color: black;
+    font-size: larger;
+    background-color:white;
+    border-radius: 2px;
+    border: 2px solid rgb(255, 255, 190);
+    overflow: hidden;
+}
+#bar_progress_2{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background-color: red;
+    background-image: url("../img/Ej09/background_carga.png");
+    z-index: 1;
+}
+
+@keyframes barra_progreso{
+    from{width: 0;}
+    to{width: 100%;}
+}
+@keyframes background_moving_barra{
+    from{background-position-x: 0;}
+    to{background-position-x: 32px;}
+}
