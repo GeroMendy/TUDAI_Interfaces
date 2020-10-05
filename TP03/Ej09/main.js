@@ -14,10 +14,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function mostrar_carga(elem) {
         let css_class_name = "loading";
-        elem.classList.add(css_class_name);
-        setTimeout(()=>{
-            elem.classList.remove(css_class_name)
-        }, 5000);
+        if(!elem.classList.contains(css_class_name)){
+            elem.classList.add(css_class_name);
+            setTimeout(()=>{
+                elem.classList.remove(css_class_name)
+            }, 5000);
+        }
     }
     
 });
